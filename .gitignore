@@ -5,6 +5,7 @@ Thumbs.db
 # Arquivos de IDE/Editor
 .vscode/
 .idea/
+*.avif
 *.sublime-project
 *.sublime-workspace
 
