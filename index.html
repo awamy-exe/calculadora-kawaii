@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <h1><i class="fas fa-calculator"></i> Calculadora Online</h1>
+        <p class="subtitle">Simples, rápida e fácil de usar</p>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="info-section">
+                <h2>Recursos</h2>
+                <ul>
+                    <li><i class="fas fa-check"></i> Operações básicas</li>
+                    <li><i class="fas fa-check"></i> Cálculos com porcentagem</li>
+                    <li><i class="fas fa-check"></i> Números decimais</li>
+                    <li><i class="fas fa-check"></i> Interface intuitiva</li>
+                </ul>
+            </div>
+
+            <div class="calculator">
+                <div class="display" id="display"></div>
+                <div class="buttons">
+                    <button class="button light-gray" onclick="clearDisplay()">C</button>
+                    <button class="button light-gray" onclick="appendLastResult()">ANS</button>
+                    <button class="button light-gray" onclick="appendOperator('%')">%</button>
+                    <button class="button light-gray" onclick="appendOperator('.')">.</button>
+                    <button class="button orange" onclick="appendOperator('/')">/</button>
+                    <button class="button dark-gray" onclick="appendNumber('7')">7</button>
+                    <button class="button dark-gray" onclick="appendNumber('8')">8</button>
+                    <button class="button dark-gray" onclick="appendNumber('9')">9</button>
+                    <button class="button orange" onclick="appendOperator('*')">*</button>
+                    <button class="button dark-gray" onclick="appendNumber('4')">4</button>
+                    <button class="button dark-gray" onclick="appendNumber('5')">5</button>
+                    <button class="button dark-gray" onclick="appendNumber('6')">6</button>
+                    <button class="button orange" onclick="appendOperator('-')">-</button>
+                    <button class="button dark-gray" onclick="appendNumber('1')">1</button>
+                    <button class="button dark-gray" onclick="appendNumber('2')">2</button>
+                    <button class="button dark-gray" onclick="appendNumber('3')">3</button>
+                    <button class="button orange" onclick="appendOperator('+')">+</button>
+                    <button class="button dark-gray wide" onclick="appendNumber('0')">0</button>
+                    <button class="button orange" onclick="calculate()">=</button>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h2>Como Usar</h2>
+                <div class="instruction-cards">
+                    <div class="card">
+                        <i class="fas fa-1"></i>
+                        <p>Digite os números usando o teclado numérico</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-2"></i>
+                        <p>Selecione a operação desejada</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-3"></i>
+                        <p>Pressione = para ver o resultado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Desenvolvido com <i class="fas fa-heart"></i> | 2024</p>
+        <div class="social-links">
+            <a href="https://github.com/seu-usuario" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/seu-perfil" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
