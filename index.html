@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.pluggy.ai/pluggy-connect/v2/pluggy-connect.js"></script>
+    
+    <!-- PWA Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ad6989">
+    <link rel="apple-touch-icon" href="https://i.pinimg.com/originals/cf/e6/f2/cfe6f26807e632be0f532467f722ac3e.png">
 </head>
 
 <body>
@@ -202,6 +207,17 @@
 
     <script src="https://w.soundcloud.com/player/api.js"></script>
     <script src="assets/js/script.js"></script>
+    
+    <!-- PWA Registration Script -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('Service Worker registrado!', reg))
+                    .catch(err => console.log('Erro ao registrar Service Worker:', err));
+            });
+        }
+    </script>
 </body>
 
 </html>

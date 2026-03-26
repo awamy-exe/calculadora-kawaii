@@ -1,0 +1,21 @@
+{
+  "name": "Calculadora & Planejador Financeiro",
+  "short_name": "Calculadora",
+  "description": "Uma solução completa de gestão financeira pessoal com temas Hello Kitty e Kuromi.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fce4ec",
+  "theme_color": "#ad6989",
+  "icons": [
+    {
+      "src": "https://i.pinimg.com/originals/cf/e6/f2/cfe6f26807e632be0f532467f722ac3e.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.pinimg.com/originals/cf/e6/f2/cfe6f26807e632be0f532467f722ac3e.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
