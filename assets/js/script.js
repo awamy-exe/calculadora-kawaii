@@ -271,6 +271,8 @@ function renderSummary() {
     const el = document.getElementById('budget-balance');
     el.textContent = `R$ ${bal.toFixed(2)}`;
     el.style.color = bal < 0 ? '#ff5252' : '';
+
+    el.style.color = bal < 0 ? '#ff5252' : '';
 }
 
 // --- Tabela Editável ---
