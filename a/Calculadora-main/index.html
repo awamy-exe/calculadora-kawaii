@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora & Planejador Financeiro</title>
+    <link rel="icon" href="https://i.pinimg.com/originals/cf/e6/f2/cfe6f26807e632be0f532467f722ac3e.png"
+        type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.pluggy.ai/pluggy-connect/v2/pluggy-connect.js"></script>
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" title="Trocar Tema"><img
+            src="https://i.pinimg.com/originals/53/ea/85/53ea855d85bcf99af50e2c7d64b016f3.png" alt="Tema"
+            style="width: 35px; height: 35px;"></button>
+    <header>
+        <h1><img id="header-icon" src="https://i.pinimg.com/originals/cf/e6/f2/cfe6f26807e632be0f532467f722ac3e.png"
+                alt="Ícone" style="height: 1.2em; vertical-align: middle; margin-right: 10px;"> <span
+                id="header-title">Calculadora & Planejador Financeiro</span></h1>
+        <p class="subtitle">Organize suas finanças de um jeito diferente</p>
+    </header>
+    <main>
+        <div class="container">
+            <div class="left-panel" style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="info-section">
+                    <h2>Recursos</h2>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Calculadora completa</li>
+                        <li><i class="fas fa-check"></i> Planejador financeiro pessoal</li>
+                        <li><i class="fas fa-check"></i> Gráficos de receitas e despesas</li>
+                        <li><i class="fas fa-check"></i> Exportar / Importar Excel (.csv)</li>
+                        <li><i class="fas fa-check"></i> Tabela editável de transações</li>
+                        <li><i class="fas fa-check"></i> Temas Hello Kitty & Kuromi</li>
+                    </ul>
+                </div>
+
+                <div class="instructions">
+                    <h2>Como Usar</h2>
+                    <div class="instruction-cards">
+                        <div class="card">
+                            <i class="fas fa-calculator"></i>
+                            <p>Digite os números e use os operadores para calcular</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-plus-circle" style="color: #69f0ae;"></i>
+                            <p>Clique em <strong>Nova Receita</strong> para registrar um ganho</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-minus-circle" style="color: #ff5252;"></i>
+                            <p>Clique em <strong>Nova Despesa</strong> para registrar um gasto</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-piggy-bank"></i>
+                            <p>Acompanhe seu saldo e histórico no painel ao lado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculator">
+                <div class="display" id="display"></div>
+                <!-- Botões do Planejador Financeiro (Abaixo do display) -->
+                <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+                    <button class="button light-gray budget-btn-action" onclick="addTransaction('income')"
+                        title="Enviar número do visor como Receita">
+                        <i class="fas fa-plus-circle" style="color: #69f0ae;"></i> Nova Receita
+                    </button>
+                    <button class="button light-gray budget-btn-action" onclick="addTransaction('expense')"
+                        title="Enviar número do visor como Despesa">
+                        <i class="fas fa-minus-circle" style="color: #ff5252;"></i> Nova Despesa
+                    </button>
+                </div>
+                <div class="buttons">
+                    <button class="button light-gray" onclick="clearDisplay()">C</button>
+                    <button class="button light-gray" onclick="appendLastResult()">ANS</button>
+                    <button class="button light-gray" onclick="appendOperator('%')">%</button>
+                    <button class="button light-gray" onclick="appendOperator('.')">.</button>
+                    <button class="button orange" onclick="appendOperator('/')">/</button>
+                    <button class="button dark-gray" onclick="appendNumber('7')">7</button>
+                    <button class="button dark-gray" onclick="appendNumber('8')">8</button>
+                    <button class="button dark-gray" onclick="appendNumber('9')">9</button>
+                    <button class="button orange" onclick="appendOperator('*')">*</button>
+                    <button class="button dark-gray" onclick="appendNumber('4')">4</button>
+                    <button class="button dark-gray" onclick="appendNumber('5')">5</button>
+                    <button class="button dark-gray" onclick="appendNumber('6')">6</button>
+                    <button class="button orange" onclick="appendOperator('-')">-</button>
+                    <button class="button dark-gray" onclick="appendNumber('1')">1</button>
+                    <button class="button dark-gray" onclick="appendNumber('2')">2</button>
+                    <button class="button dark-gray" onclick="appendNumber('3')">3</button>
+                    <button class="button orange" onclick="appendOperator('+')">+</button>
+                    <button class="button dark-gray wide" onclick="appendNumber('0')">0</button>
+                    <button class="button orange" onclick="calculate()">=</button>
+                </div>
+            </div>
+
+            <!-- Planejador Financeiro -->
+            <div class="budget-section">
+                <h2 class="budget-title"><i class="fas fa-piggy-bank"></i> Meu Orçamento</h2>
+
+                <!-- Resumo -->
+                <div class="budget-summary-box">
+                    <div>
+                        <p class="budget-label">Balanço</p>
+                        <h3 id="budget-balance" class="budget-balance-val">R$ 0.00</h3>
+                    </div>
+                    <div>
+                        <p class="budget-label">Receitas 🟢</p>
+                        <h3 id="budget-income" style="color: #69f0ae; font-size: 1.1rem;">R$ 0.00</h3>
+                    </div>
+                    <div>
+                        <p class="budget-label">Despesas 🔴</p>
+                        <h3 id="budget-expense" style="color: #ff5252; font-size: 1.1rem;">R$ 0.00</h3>
+                    </div>
+                </div>
+
+                <!-- Mini Dashboard / Gráfico -->
+                <div class="budget-chart-box">
+                    <canvas id="budget-chart" height="180"></canvas>
+                </div>
+
+                <!-- Toolbar: Exportar / Importar -->
+                <div class="budget-toolbar">
+                    <button class="budget-tool-btn" onclick="exportCSV()" title="Exportar para Excel">
+                        <i class="fas fa-file-export"></i> Exportar CSV
+                    </button>
+                    <label class="budget-tool-btn" title="Importar do Excel">
+                        <i class="fas fa-file-import"></i> Importar CSV
+                        <input type="file" id="csv-import" accept=".csv" onchange="importCSV(event)"
+                            style="display:none;">
+                    </label>
+                </div>
+
+                <!-- Conexão Bancária (Pluggy) -->
+                <div class="budget-toolbar">
+                    <button class="budget-tool-btn" id="pluggy-connect-btn" onclick="connectBank()"
+                        title="Conectar conta bancária via Pluggy">
+                        <i class="fas fa-university"></i> Conectar Banco
+                    </button>
+                </div>
+                <div id="pluggy-status"
+                    style="text-align:center; font-size:0.85rem; color:#ad6989; margin-bottom:10px; display:none;">
+                    <i class="fas fa-check-circle" style="color:#69f0ae;"></i> <span id="pluggy-status-text">Banco
+                        conectado</span>
+                </div>
+
+                <!-- Tabela Editável -->
+                <h3 class="budget-history-title">Histórico <small style="font-weight:normal; opacity:0.7;">(clique para
+                        editar)</small></h3>
+                <div class="budget-table-wrapper">
+                    <table class="budget-table" id="budget-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaction-tbody">
+                            <!-- Linhas inseridas via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="button light-gray budget-clear-btn" onclick="clearTransactions()">Limpar Tudo <i
+                            class="fas fa-trash-alt"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Playlist System -->
+    <div class="music-player">
+        <iframe id="sc-widget" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/love-m-l-91937696/sets/kpop-2026&color=%23f48fb1&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
+            style="border-radius: 12px;"></iframe>
+        <div class="player-controls" style="margin-top: 10px; margin-bottom: 0;">
+            <button onclick="prevTrack()" title="Faixa Anterior"><i class="fas fa-step-backward"></i></button>
+            <button onclick="togglePlay()" id="play-btn" title="Tocar / Pausar"><i class="fas fa-play"></i></button>
+            <button onclick="nextTrack()" title="Próxima Faixa"><i class="fas fa-step-forward"></i></button>
+        </div>
+        <div class="volume-control">
+            <i class="fas fa-volume-down" id="vol-icon"></i>
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <footer>
+        <p>Desenvolvido com <i class="fas fa-heart"></i> | 2024</p>
+        <div class="social-links">
+            <a href="https://github.com/seu-usuario" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/seu-perfil" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
