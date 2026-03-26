@@ -1,5 +1,5 @@
 {
-  "name": "kawaii-finance-backend",
+  "name": "finance-backend",
   "version": "1.0.0",
   "description": "Backend para integração com Pluggy - Planejador Financeiro",
   "main": "server.js",
